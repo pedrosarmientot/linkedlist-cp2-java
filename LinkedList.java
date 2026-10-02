@@ -77,6 +77,52 @@ public class LinkedList<E> implements IList<E>{
             throw new IndexOutOfBoundsException("Index out of range");
         }
     }
+    
+    public void removeDuplicates(){
+        Node<E> current = first;
+        while(current != null){
+            Node<E> anterior = current;
+            Node<E> cursor = current.getNext();
+            while(cursor != null){
+                if(cursor.getInfo().equals(current.getInfo())){
+                    anterior.setNext(cursor.getNext());
+                    size--;
+                } else {
+                    anterior = cursor;
+                }
+                cursor = cursor.getNext();
+            }
+            current = current.getNext();
+        }
+    }
+
+    public void rotateRight(){
+        if(size <= 1) return;
+
+        Node<E> cursor = first;
+        while(cursor.getNext().getNext() != null){
+            cursor = cursor.getNext();
+        }
+        Node<E> last = cursor.getNext();
+        cursor.setNext(null);
+        last.setNext(first);
+        first = last;
+    }
+    
+    public void concat(LinkedList<E> secondList){
+        if(secondList.isEmpty()) return;
+
+        if(this.isEmpty()){
+            this.first = secondList.first;
+        } else {
+            Node<E> cursor = this.first;
+            while(cursor.getNext() != null){
+                cursor = cursor.getNext();
+            }
+            cursor.setNext(secondList.first);
+        }
+        this.size += secondList.size;re
+    }
 
     @Override 
     public int size(){
