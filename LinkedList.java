@@ -121,7 +121,7 @@ public class LinkedList<E> implements IList<E>{
             }
             cursor.setNext(secondList.first);
         }
-        this.size += secondList.size;re
+        this.size += secondList.size;
     }
 
     @Override 
